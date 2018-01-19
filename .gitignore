@@ -1,0 +1,8 @@
+*.iml
+.gradle
+.idea
+build/
+local.properties
+Thumbs.db
+/app/bugly
+!/gradle/wrapper/gradle-wrapper.jar
