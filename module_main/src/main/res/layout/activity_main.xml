@@ -6,21 +6,15 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/news_button"
+        android:id="@+id/btn_a"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="News" />
+        android:text="Module A" />
 
     <Button
-        android:id="@+id/girls_button"
+        android:id="@+id/btn_b"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Girls" />
-
-    <Button
-        android:id="@+id/fragment_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fragment" />
+        android:text="Module B" />
 
 </LinearLayout>

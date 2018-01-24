@@ -1,15 +1,25 @@
 apply plugin: 'com.android.application'
 
+
+static def buildTime() {
+    return new Date().format("yyyyMMdd")
+}
+
 android {
-    compileSdkVersion 26
+    compileSdkVersion build_versions.target_sdk
+
     defaultConfig {
-        applicationId "com.clj.modulevariants"
-        minSdkVersion 26
-        targetSdkVersion 26
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        resValue "string", "build_time", buildTime()        //打包时间
+
+        flavorDimensions "versionCode"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -20,10 +30,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile project(path: ':lib_common')
+    implementation deps.support.multidex
+
+    if (!isModule.toBoolean()) {
+        implementation project(':module_main')
+        implementation project(':module_a')
+        implementation project(':module_b')
+
+//        commonimplementation project(path: ':module_news', configuration: 'commonRelease')
+//        redimplementation project(path: ':module_news', configuration: 'redRelease')
+//        blueimplementation project(path: ':module_news', configuration: 'blueRelease')
+    }
 }
