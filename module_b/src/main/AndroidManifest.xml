@@ -1,2 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.clj.module.b" />
+    package="com.clj.module.b">
+
+    <application android:theme="@style/AppTheme">
+        <activity
+            android:name=".BActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+
+</manifest>

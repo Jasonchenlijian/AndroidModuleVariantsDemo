@@ -6,7 +6,7 @@
         android:name="module.AApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/a_app_name"
+        android:label="@string/module_a_app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AActivity">

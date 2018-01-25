@@ -2,6 +2,7 @@ package com.clj.lib.common.base;
 
 import android.app.Application;
 
+import com.clj.lib.common.utils.Utils;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class BaseApplication extends Application {
 
-    public static final String ROOT_PACKAGE = "com.guiying.module";
+    public static final String ROOT_PACKAGE = "com.clj.app";
 
     private static BaseApplication sInstance;
 
@@ -32,6 +33,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        Utils.init(this);
         mAppDelegateList = ClassUtils.getObjectsWithInterface(this, IApplicationDelegate.class, ROOT_PACKAGE);
         for (IApplicationDelegate delegate : mAppDelegateList) {
             delegate.onCreate();

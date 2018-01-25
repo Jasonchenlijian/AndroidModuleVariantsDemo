@@ -6,7 +6,7 @@
         android:name="module.BApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/b_app_name"
+        android:label="@string/module_b_app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".BActivity">

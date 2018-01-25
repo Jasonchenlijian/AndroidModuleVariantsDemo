@@ -6,40 +6,68 @@ static def buildTime() {
 }
 
 android {
-    compileSdkVersion build_versions.target_sdk
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion build_versions.min_sdk
-        targetSdkVersion build_versions.target_sdk
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
 
-        resValue "string", "build_time", buildTime()        //打包时间
+        resValue "string", "build_time", buildTime()
 
         flavorDimensions "versionCode"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            zipAlignEnabled true
+            shrinkResources true
+            minifyEnabled true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            applicationIdSuffix ".debug"
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            zipAlignEnabled false
+            shrinkResources false
+            minifyEnabled false
+            debuggable true
+        }
+    }
+
+    productFlavors{
+        flavorsOne{
+            buildConfigField "int", "APP_TYPE", "1"
+            applicationId "com.clj.app.one"
+        }
+        flavorsTwo{
+            buildConfigField "int", "APP_TYPE", "2"
+            applicationId "com.clj.app.two"
         }
     }
 }
 
+configurations {
+    flavorsOne_implementation
+    flavorsTwo_implementation
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     compile project(path: ':lib_common')
-    implementation deps.support.multidex
 
     if (!isModule.toBoolean()) {
         implementation project(':module_main')
         implementation project(':module_a')
         implementation project(':module_b')
 
-//        commonimplementation project(path: ':module_news', configuration: 'commonRelease')
-//        redimplementation project(path: ':module_news', configuration: 'redRelease')
-//        blueimplementation project(path: ':module_news', configuration: 'blueRelease')
+        flavorsOne_implementation project(path: ':module_a', configuration: 'flavorsOneRelease')
+        flavorsTwo_implementation project(path: ':module_a', configuration: 'flavorsTwoRelease')
     }
 }
