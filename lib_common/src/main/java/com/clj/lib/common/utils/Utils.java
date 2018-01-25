@@ -13,9 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
-/**
- * <p>Utils初始化相关 </p>
- */
+
 public class Utils {
 
     private static Context context;

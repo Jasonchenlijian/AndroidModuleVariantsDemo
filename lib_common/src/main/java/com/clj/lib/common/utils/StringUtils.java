@@ -1,8 +1,5 @@
 package com.clj.lib.common.utils;
 
-/**
- * 字符串相关工具类
- */
 public class StringUtils {
 
     private StringUtils() {
