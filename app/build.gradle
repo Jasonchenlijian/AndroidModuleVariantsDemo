@@ -1,10 +1,6 @@
 apply plugin: 'com.android.application'
 
 
-static def buildTime() {
-    return new Date().format("yyyyMMdd")
-}
-
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
@@ -14,8 +10,6 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-
-        resValue "string", "build_time", buildTime()
 
         flavorDimensions "versionCode"
     }
