@@ -46,11 +46,6 @@ android {
     }
 }
 
-configurations {
-    flavorsOne_implementation
-    flavorsTwo_implementation
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -60,8 +55,5 @@ dependencies {
         implementation project(':module_main')
         implementation project(':module_a')
         implementation project(':module_b')
-
-        flavorsOne_implementation project(path: ':module_a', configuration: 'flavorsOneRelease')
-        flavorsTwo_implementation project(path: ':module_a', configuration: 'flavorsTwoRelease')
     }
 }
